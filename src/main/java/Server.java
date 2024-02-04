@@ -18,9 +18,17 @@ public class Server {
                 ) {
                     System.out.printf("New connection accepted. Port: %d%n", clientSocket.getPort());
 
-                    final String name = in.readLine();
-
-                    out.println(String.format("Hi %s, your port is %d", name, clientSocket.getPort()));
+                    out.println("Хотите зарегистрироваться на нашем сервисе? (yes/no)");
+                    if (in.readLine().equals("yes")) {
+                        out.println("Введите имя: ");
+                        String name = in.readLine();
+                        out.println("Введите пароль: ");
+                        String key = in.readLine();
+                        out.println("Спасибо, " + name + ", что Вы с нами! Регистрация пройдена успешно!");
+                    } else {
+                        out.println("Очень жаль!");
+                        clientSocket.close();
+                    }
                 }
             }
 
